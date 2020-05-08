@@ -6,6 +6,15 @@ var Cart = function (items) {
   this.items = items;
 };
 
+// We need to add an event listener that's triggered by add to cart button to store the objects selected from drop down
+// items, quantity, submit
+
+function handleSubmit(event){
+  event.preventDefault();
+  var product = event.target.items.value;
+  var howMuch = event.target.quantity.value;
+  console.log(product, howMuch);
+}
 
 Cart.prototype.addItem = function (product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
@@ -23,6 +32,7 @@ Cart.prototype.removeItem = function (item) {
 var CartItem = function (product, quantity) {
   this.product = product;
   this.quantity = quantity;
+
 };
 
 // Product contructor.
@@ -73,3 +83,7 @@ function renderDropDown() {
   }
 }
 renderDropDown();
+
+var button = document.getElementById('catalog');
+button.addEventListener('submit', handleSubmit);
+
